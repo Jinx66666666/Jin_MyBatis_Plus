@@ -3,6 +3,7 @@ package com.jin.sys.entity;
 import java.io.Serializable;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -41,6 +42,8 @@ public class User implements Serializable {
      * 邮箱
      */
     private String email;
-
+    //数据库为对应字段
+    @TableField(exist = false)//为对应字段注解@TableField(exist = false)
+    private String Jin;
 
 }
