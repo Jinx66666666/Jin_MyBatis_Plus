@@ -118,5 +118,16 @@ public class UserController {
         return Result.ok("获取成功");
 
     }
+    /**
+     * 条件构造器
+     */
+    @RequestMapping("/entityWrapperSelect")
+    public Result entityWrapperSelect(){
+
+        List<User> userList =service.entityWrapperSelect();
+
+        return Result.ok("获取成功",userList);
+
+    }
 }
 

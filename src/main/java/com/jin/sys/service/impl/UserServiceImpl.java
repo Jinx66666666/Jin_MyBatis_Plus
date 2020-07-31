@@ -74,4 +74,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         int i = userMapper.deleteByMap(map);
         System.out.println("======================"+i);
     }
+
+    @Override
+    public List<User> entityWrapperSelect() {
+
+        return null;
+    }
 }
