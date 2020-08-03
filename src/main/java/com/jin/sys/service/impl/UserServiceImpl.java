@@ -1,11 +1,14 @@
 package com.jin.sys.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.jin.sys.entity.User;
 import com.jin.sys.mapper.UserMapper;
 import com.jin.sys.service.UserService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +25,7 @@ import java.util.Map;
  * @author Jin
  * @since 2020-06-03
  */
+@Slf4j
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
@@ -80,6 +84,25 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public List<User> entityWrapperSelect() {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         return null;
+        Map<String, Object> map = new HashMap<>();
+        map.put("name","Jin");
+
+
+        QueryWrapper<User> queryWrapper = Wrappers.query();
+//        List<User> users = userMapper.selectList(queryWrapper.select("name","age").allEq(map));
+        //查询姓名为Jack的数据
+        List<User> users = userMapper.selectList(queryWrapper.like("name","Jack").eq("age",20).or().like("name","Jin"));
+
+        return users;
+    }
+
+    @Override
+    public void entityWrapperUpdate() {
+        User user = new User();
+        user.setName("JinX");
+        user.setAge(20);
+        userMapper.update(user,new UpdateWrapper<User>().eq("name","Jin").eq("age",18));
+
     }
 
     @Override

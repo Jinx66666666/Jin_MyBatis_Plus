@@ -129,6 +129,15 @@ public class UserController {
         return Result.ok("获取成功",userList);
 
     }
+
+    @RequestMapping("/entityWrapperUpdate")
+    public Result entityWrapperUpdate(){
+
+        service.entityWrapperUpdate();
+
+        return Result.ok("获取成功");
+
+    }
     /**
      * 统计查询
      */

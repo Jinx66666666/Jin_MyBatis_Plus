@@ -30,4 +30,6 @@ public interface UserService extends IService<User> {
     Integer selectCount();
 
     Integer deleteFlag();
+
+    void entityWrapperUpdate();
 }
