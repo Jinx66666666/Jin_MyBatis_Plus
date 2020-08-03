@@ -1,10 +1,10 @@
 package com.jin.sys.entity;
 
-import java.io.Serializable;
-
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.jin.core.entity.DataEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -18,9 +18,9 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class User implements Serializable {
+public class User extends DataEntity {
 
-    private static final long serialVersionUID=1L;
+//    private static final long serialVersionUID=1L;
 
     /**
      * 主键ID
@@ -45,5 +45,10 @@ public class User implements Serializable {
     //数据库为对应字段
     @TableField(exist = false)//为对应字段注解@TableField(exist = false)
     private String Jin;
+
+    @TableLogic     //逻辑删除属性
+    private Integer logic_flag;
+
+
 
 }

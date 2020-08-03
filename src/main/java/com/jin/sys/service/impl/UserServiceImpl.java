@@ -1,5 +1,6 @@
 package com.jin.sys.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.jin.sys.entity.User;
 import com.jin.sys.mapper.UserMapper;
@@ -77,7 +78,21 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public List<User> entityWrapperSelect() {
-
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
         return null;
     }
+
+    @Override
+    public Integer selectCount() {
+        Integer integer = userMapper.selectCount(new QueryWrapper<User>().eq("name", "Jin"));
+        return integer;
+    }
+
+    @Override
+    public Integer deleteFlag() {
+        int i = userMapper.deleteById(12);
+        return i;
+    }
+
+
 }

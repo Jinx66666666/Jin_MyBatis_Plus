@@ -26,4 +26,8 @@ public interface UserService extends IService<User> {
     void deleteByMap();
 
     List<User> entityWrapperSelect();
+
+    Integer selectCount();
+
+    Integer deleteFlag();
 }

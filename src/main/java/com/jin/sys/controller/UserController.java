@@ -129,5 +129,29 @@ public class UserController {
         return Result.ok("获取成功",userList);
 
     }
+    /**
+     * 统计查询
+     */
+    @RequestMapping("/selectCount")
+    public Result selectCount(){
+
+        Integer count =service.selectCount();
+
+        return Result.ok("获取成功",count);
+
+    }
+    /**
+     * 统计查询
+     */
+    @RequestMapping("/deleteFlag")
+    public Result deleteFlag(){
+
+        Integer count =service.deleteFlag();
+
+        return Result.ok("删除成功",count);
+
+    }
+
+
 }
 
