@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
  * @create: 2020-08-03 17:07
  * @version: V1.0
  */
-@JsonIgnoreProperties(value="newRecord", allowGetters = false, allowSetters = false)
+@JsonIgnoreProperties(value = "newRecord", allowGetters = false, allowSetters = false)
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ToString(exclude = {"creator", "gmtCreate"})
@@ -35,4 +35,8 @@ public class DataEntity extends BaseEntity implements Serializable {
     @JSONField(deserialize = false)
     @TableField(value = "gmt_create", fill = FieldFill.INSERT)
     public LocalDateTime gmtCreate;
+
+    //    @TableField(value = "gmt_modified", fill = FieldFill.UPDATE)//只在修改时生效
+    @TableField(value = "gmt_modified", fill = FieldFill.INSERT_UPDATE)//添加，修改时都生效
+    public LocalDateTime gmtModified;
 }

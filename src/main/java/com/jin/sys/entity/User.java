@@ -3,14 +3,13 @@ package com.jin.sys.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.jin.core.entity.DataEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author Jin
@@ -25,7 +24,7 @@ public class User extends DataEntity {
     /**
      * 主键ID
      */
-    @TableId(value = "id",type = IdType.AUTO)
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     /**
@@ -46,9 +45,8 @@ public class User extends DataEntity {
     @TableField(exist = false)//为对应字段注解@TableField(exist = false)
     private String Jin;
 
-    @TableLogic     //逻辑删除属性
-    private Integer logic_flag;
-
+/*    @TableLogic     //逻辑删除属性
+    private Integer logic_flag;*/
 
 
 }

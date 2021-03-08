@@ -6,8 +6,10 @@ import com.jin.sys.entity.User;
 import com.jin.sys.model.Result;
 import com.jin.sys.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -15,7 +17,7 @@ import java.util.List;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author Jin
@@ -26,25 +28,28 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService service;
+
     @RequestMapping("/jin")
-    private List getUserList(){
+    private List getUserList() {
         List list = new ArrayList();
         list.add(1);
         list.add(2);
         list.add(3);
         List<User> lists = service.list(new QueryWrapper<User>()
-                .in("id",list)
+                        .in("id", list)
 //                .eq("id","2L")
         );
         return lists;
     }
-    @RequestMapping("/jinx")
-    private User getUserById(){
-        User byId = service.getById(1);
+
+    @RequestMapping("/jinx/{id}")
+    private User getUserById(@PathVariable("id") long id) {
+        User byId = service.getById(id);
         return byId;
     }
+
     @RequestMapping("/save")
-    private void saveUser(){
+    private void saveUser() {
         User user = new User();
         user.setAge(18);
         user.setName("Jin");
@@ -52,112 +57,121 @@ public class UserController {
         user.setJin("数据库未对应字段");
         service.save(user);
     }
-    @RequestMapping("/update")
-    private void update(){
+
+    @RequestMapping("/update/{id}")
+    private void update(@PathVariable("id") long id) {
         User user = new User();
-        user.setId(1L);
+        user.setId(id);
         user.setAge(18);
         user.setName("JinX");
         user.setEmail("1215976530@qq.com");
         service.updateById(user);
     }
+
     @RequestMapping("/delete")
-    private void delete(){
+    private void delete(@RequestParam("id") long id) {
 
-        service.removeById(9);
+        service.removeById(id);
     }
-//Mapper CRUD接口
+
+    //Mapper CRUD接口
     @RequestMapping("/insert")
-    public void insert(){
-       service.insertUser();
+    public void insert() {
+        service.insertUser();
     }
 
-/**
- * 通过多个ID查询
- */
+    /**
+     * 通过多个ID查询
+     */
     @RequestMapping("/selectBatchIds")
-    public Result selectBatchIds(){
+    public Result selectBatchIds() {
 
-        List<User> userList =  service.selectBatchIds();
+        List<User> userList = service.selectBatchIds();
 
-        return Result.ok("获取成功",userList);
+        return Result.ok("获取成功", userList);
 
     }
+
     /**
      * 通过Map封装条件查询
      */
 
     @RequestMapping("/selectByMap")
-    public Result selectByMap(){
+    public Result selectByMap() {
 
-        List<User> userList =  service.selectByMap();
+        List<User> userList = service.selectByMap();
 
-        return Result.ok("获取成功",userList);
+        return Result.ok("获取成功", userList);
 
     }
+
     /**
      * 通过Map封装条件查询
      */
 
     @RequestMapping("/selectPage")
-    public Result selectPage(){
+    public Result selectPage() {
 
-        List<User> userList =  service.selectPage();
+        List<User> userList = service.selectPage();
 
-        return Result.ok("获取成功",userList);
+        return Result.ok("获取成功", userList);
 
     }
+
     /**
      * 根据条件进行删除
      */
     @RequestMapping("/deleteByMap")
-    public Result deleteByMap(){
+    public Result deleteByMap() {
 
         service.deleteByMap();
 
         return Result.ok("获取成功");
 
     }
+
     /**
      * 条件构造器
      */
     @RequestMapping("/entityWrapperSelect")
-    public Result entityWrapperSelect(){
+    public Result entityWrapperSelect() {
 
-        List<User> userList =service.entityWrapperSelect();
+        List<User> userList = service.entityWrapperSelect();
 
-        return Result.ok("获取成功",userList);
+        return Result.ok("获取成功", userList);
 
     }
 
     @RequestMapping("/entityWrapperUpdate")
-    public Result entityWrapperUpdate(){
+    public Result entityWrapperUpdate() {
 
         service.entityWrapperUpdate();
 
         return Result.ok("获取成功");
 
     }
+
     /**
      * 统计查询
      */
     @RequestMapping("/selectCount")
-    public Result selectCount(){
+    public Result selectCount() {
 
-        Integer count =service.selectCount();
+        Integer count = service.selectCount();
 
-        return Result.ok("获取成功",count);
+        return Result.ok("获取成功", count);
 
     }
+
     /**
      * 统计查询
      */
     @RequestMapping("/deleteFlag")
-    public Result deleteFlag(){
+    public Result deleteFlag() {
 
-        Integer count =service.deleteFlag();
+        Integer count = service.deleteFlag();
 
-        return Result.ok("删除成功",count);
+        return Result.ok("删除成功", count);
 
     }
 

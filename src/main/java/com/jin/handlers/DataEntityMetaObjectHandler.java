@@ -26,14 +26,15 @@ public class DataEntityMetaObjectHandler implements MetaObjectHandler {
         }
 
         DataEntity entity = (DataEntity) metaObject.getOriginalObject();
-        entity.setCreator("黄晶");
+        entity.setCreator("Jin");
         entity.setGmtCreate(LocalDateTime.now());
+        entity.setGmtModified(LocalDateTime.now());
 
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
-//        setFieldValByName("creator", user.getCode(), metaObject);
-//        setFieldValByName("modifier", user.getCode(), metaObject);
+        log.info("start update fill ....");
+        this.setFieldValByName("gmtModified", LocalDateTime.now(), metaObject);
     }
 }

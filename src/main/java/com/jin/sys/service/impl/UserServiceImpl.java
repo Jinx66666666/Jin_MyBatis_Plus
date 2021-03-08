@@ -19,7 +19,7 @@ import java.util.Map;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author Jin
@@ -31,6 +31,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Autowired
     private UserMapper userMapper;
+
     @Override
     public void insertUser() {
         User user = new User();
@@ -39,7 +40,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setName("JinX");
         user.setEmail("1215976530@qq.com");
         int i = userMapper.insert(user);
-        System.out.println("dasfddddddddddddddddddddddddddddd"+i);
+        System.out.println("dasfddddddddddddddddddddddddddddd" + i);
         Long id = user.getId();
         System.out.println(id);
     }
@@ -58,8 +59,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public List<User> selectByMap() {
         Map<String, Object> map = new HashMap<>();
-        map.put("name","Jin");
-        map.put("age",18);
+        map.put("name", "Jin");
+        map.put("age", 18);
         List<User> users = userMapper.selectByMap(map);
 
         return users;
@@ -74,24 +75,23 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public void deleteByMap() {
         Map<String, Object> map = new HashMap<>();
-        map.put("name","aaa");
-        map.put("age",18);
+        map.put("name", "aaa");
+        map.put("age", 18);
         int i = userMapper.deleteByMap(map);
-        System.out.println("======================"+i);
+        System.out.println("======================" + i);
     }
 
     @Override
     public List<User> entityWrapperSelect() {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
-        return null;
         Map<String, Object> map = new HashMap<>();
-        map.put("name","Jin");
+        map.put("name", "Jin");
 
 
         QueryWrapper<User> queryWrapper = Wrappers.query();
 //        List<User> users = userMapper.selectList(queryWrapper.select("name","age").allEq(map));
         //查询姓名为Jack的数据
-        List<User> users = userMapper.selectList(queryWrapper.like("name","Jack").eq("age",20).or().like("name","Jin"));
+        List<User> users = userMapper.selectList(queryWrapper.like("name", "Jack").eq("age", 20).or().like("name", "Jin"));
 
         return users;
     }
@@ -101,7 +101,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         User user = new User();
         user.setName("JinX");
         user.setAge(20);
-        userMapper.update(user,new UpdateWrapper<User>().eq("name","Jin").eq("age",18));
+        userMapper.update(user, new UpdateWrapper<User>().eq("name", "Jin").eq("age", 18));
 
     }
 
