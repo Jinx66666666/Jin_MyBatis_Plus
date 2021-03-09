@@ -43,8 +43,8 @@ public class User extends DataEntity {
     @TableField(exist = false)//为对应字段注解@TableField(exist = false)
     private String Jin;
 
-/*    @TableLogic     //逻辑删除属性
-    private Integer logic_flag;*/
+//    @TableLogic     //逻辑删除属性
+    private Integer logic_flag;
     /**
      * 版本号
      */

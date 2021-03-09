@@ -2,13 +2,14 @@ DROP TABLE IF EXISTS user;
 
 create table user
 (
-    id           bigint not null comment '主键ID'
-        auto_increment primary key,
+    id           bigint auto_increment comment '主键ID'
+        primary key,
     name         varchar(30) null comment '姓名',
     age          int null comment '年龄',
     email        varchar(50) null comment '邮箱',
-    logic_flag   int null comment '逻辑删除属性',
+    logic_flag   int default 0 null comment '逻辑删除属性',
+    version      int default 1 null,
     creator      varchar(50) null comment 'creator',
-    gmt_create   varchar(50) null comment 'gmtCreate',
-    gmt_modified varchar(50) null comment 'gmtModified'
+    gmt_create   datetime null comment 'gmtCreate',
+    gmt_modified datetime null
 );
