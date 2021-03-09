@@ -1,8 +1,6 @@
 package com.jin.sys.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.*;
 import com.jin.core.entity.DataEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -47,6 +45,12 @@ public class User extends DataEntity {
 
 /*    @TableLogic     //逻辑删除属性
     private Integer logic_flag;*/
+    /**
+     * 版本号
+     */
+    @Version
+//    @TableField(fill = FieldFill.INSERT)
+    private Integer version;
 
 
 }
